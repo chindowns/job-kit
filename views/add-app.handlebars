@@ -1,3 +1,5 @@
+<script src="../assets/js/job-post-import.js"></script>
+
 <script src="../assets/js/app-add.js"></script>
 
 <div class="background uk-height-viewport uk-light">
@@ -17,7 +19,6 @@
             <hr>
             <div id = "add-app-top"></div>
 
-
             <!-- add-application -->
             <form class="toggle-class create-form">
                 <fieldset class="uk-fieldset">
@@ -34,8 +35,11 @@
 
                             <div class="uk-grid-small uk-child-width-expand@s uk-vertical-align" id="app-qs" uk-grid>
                                 <div class="uk-width-1-3">
-                                    <input class="uk-input uk-border-pill" required placeholder="Job Title *" type="text"
-                                        id="app-title">
+{{!--           Move Link to Posting here to add an imput fuction               --}}
+                                    <input id="importPost" class="importPost uk-input uk-border-pill" placeholder="Link to Posting" type="text" >
+                                    <a type="submit" class="uk-button uk-button-primary uk-border-pill">Import
+                                    </a>
+
                                 </div>
                                 <div class="uk-width-1-3">
                                     <div class="uk-border-pill" >
@@ -47,8 +51,8 @@
                                                 Part-Time </label>
                                             <label><input class="uk-radio app-type" type="radio" name="radio2" value="Contract">
                                                 Contract </label>
-                                            <label><input class="uk-radio app-type" type="radio" name="radio2"
-                                                    value="Internship"> Internship </label>
+                                            {{!-- <label><input class="uk-radio app-type" type="radio" name="radio2"
+                                                    value="Internship"> Internship </label> --}}
 
                                             </div>
                                         </p>
@@ -58,23 +62,22 @@
                                 <div class="uk-width-1-3">
                                     <input class="uk-input uk-border-pill" placeholder="Salary" type="text"
                                         id="app-salary">
+                                        <br /><br />
+                                    <input class="uk-input uk-border-pill" placeholder="Industry" type="text" id="app-industry">
                                 </div>
+                                <div class="uk-width-1-3">
+                                    <input class="uk-input uk-border-pill" required placeholder="Job Title *" type="text" id="app-title">
+                                </div>
+
                                 <div class="uk-width-2-3">
                                     <input class="uk-input uk-border-pill" placeholder="Job Description" type="text"
                                         id="app-desc">
                                 </div>
 
                                 <div class="uk-width-1-3">
-                                    <input class="uk-input uk-border-pill" placeholder="Industry" type="text"
-                                        id="app-industry">
-                                </div>
-
-                                <div class="uk-width-1-3">
                                     <input class="uk-input uk-border-pill" placeholder="Zipcode" type="text"
                                         id="app-zipCode">
                                 </div>
-
-
 
                                 <div class="uk-width-1-3">
                                     <input class="uk-input uk-border-pill uk-form" placeholder="Date Applied"
@@ -177,11 +180,11 @@
                                 <input class="uk-input uk-border-pill" placeholder="Apply Type" type="text"
                                     id="src-applyType">
                             </div>
-
-                            <div class="uk-width-1-4">
+                            {{!-- MOVING TO THE TOP FOR AN IMPORT --}}
+                            {{!-- <div class="uk-width-1-4">
                                 <input class="uk-input uk-border-pill" placeholder="Link to Posting" type="text"
                                     id="src-posting">
-                            </div>
+                            </div> --}}
                             <!-- Dropdown? -->
                             <div class="uk-width-1-4">
                                 <input class="uk-input uk-border-pill" placeholder="Resume Version" type="text"

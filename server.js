@@ -42,6 +42,7 @@ require("./routes/api-stage-routes.js")(app);
 require("./routes/api-stage-filters.js")(app);
 require("./routes/api-user-routes.js")(app);
 require("./routes/html-routes.js")(app);
+require("./routes/api-import-job-post.js")(app);
 
 
 // Syncing Sequelize Models

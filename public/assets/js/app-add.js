@@ -1,3 +1,4 @@
+
 $(function () {
     let globalUserID = sessionStorage.getItem('uuid');
 
@@ -36,7 +37,6 @@ $(function () {
             appZip = $("#app-zipCode").val()
         }
 
-
         var newApp = {
             title: $("#app-title").val(),
             type: roleType,
@@ -44,7 +44,7 @@ $(function () {
             industry: $("#app-industry").val(),
             zipCode: appZip,
             salaryRange: $("#app-salary").val(),
-            dateApplied: $("#app-applied").val(),
+            dateApplied: $("#app-applied").val() ? new Date() : $("#app-applied").val(),
             rating: interest,
             UserId: globalUserID
         }
