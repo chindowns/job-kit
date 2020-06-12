@@ -1,22 +1,24 @@
 var cheerio = require("cheerio");
 var axios = require("axios");
 
-$(function () {
+module.exports = function(app) {
     var jobPost = {}
 
     app.get("/api/import/:url", (req, res) => {
+        console.log(req.params.url)
+        console.log("getting job post")
 
         // Getting information from the JobPosting URL.
-        axios.get("req.params.url").then(function (response) {
+        axios.get("req.params.url").then(function(response) {
             // Load the Response into cheerio and save it to a variable
             // '$' becomes a shorthand for cheerio's selector commands, much like jQuery's '$'
 
             var $ = cheerio.load(response.data);
-
+            console.log(response.data)
             // An empty array to save the data that we'll scrape
             var jobPosting = {};
             // if the URL is LinkedIn use the following
-            if (url.includes(linkedin.com)) {
+            if (url.includes(linkedin)) {
                 // With cheerio, find the title
                 // Parse the title into Title, Company, Location
                 const titleEl = $('title');
@@ -43,15 +45,10 @@ $(function () {
                 // Log the results once you've looped through each of the elements found with cheerio
                 console.log(jobPosting);
 
-                $('#app-title').val(jobPosting.title);
-                $('#comp-name').val(jobPosting.company);
-                $('#comp-zipCode').val(jobPosting.location);
-                $('#app-desc').val(jobPosting.descriptionTxt)
-
-
+                res.json(jobPosting);
 
             }
 
         })
     })
-})
+}
