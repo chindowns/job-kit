@@ -4,16 +4,19 @@ var axios = require("axios");
 module.exports = function(app) {
     var jobPost = {}
 
-    app.get("/api/import/:url", (req, res) => {
-        console.log(req.params.url)
+    app.get("/api/import/", (req, res) => {
+        console.log(req)
         console.log("getting job post")
+        console.log(req.query.link)
 
         // Getting information from the JobPosting URL.
-        axios.get("req.params.url").then(function(response) {
+        // axios.get("req.query.link")
+        fetch(req.query.link, {method: "get"})
+        .then(function(response) {
             // Load the Response into cheerio and save it to a variable
             // '$' becomes a shorthand for cheerio's selector commands, much like jQuery's '$'
 
-            var $ = cheerio.load(response.data);
+            // var $ = cheerio.load(response.data);
             console.log(response.data)
             // An empty array to save the data that we'll scrape
             var jobPosting = {};
@@ -50,5 +53,6 @@ module.exports = function(app) {
             }
 
         })
+        .catch(err => console.log(err));
     })
 }

@@ -1,5 +1,6 @@
 var db = require("../models");
 var renderApps = require("./api-application-render.js");
+const { sequelize } = require("../models");
 
 
 module.exports = function (app) {
@@ -14,7 +15,8 @@ module.exports = function (app) {
                 { model: db.Company },
                 { model: db.Contact },
                 { model: db.Source },
-                { model: db.Stage},   
+                { model: db.Stage,
+                    where: {currentStage: {[sequelize.Op.not]: "decline"}}},   
             ],
             order: [
                 [db.Stage, 'createdAt', 'DESC'],

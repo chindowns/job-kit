@@ -5,22 +5,27 @@ $(function () {
         e.preventDefault(e);
         console.log("\nImporting data from the website link\n");
 
-        let url = $(this).val();
-        console.log(url);
+        let link = $(this).val();
+        console.log(link);
 
-        // Import the Job Posting from the URL
-        $.get("/api/import/" + url, function (res) {
+        // Import the Job Posting from the link
+        $.ajax({
+            url: "/api/import/?link="+link,
+            method: "GET"
+            }).then(function(response) {
+                console.log(response);
+        });
 
-            console.log(res);
 
 
-            $('#app-title').val(jobPosting.title);
-            $('#comp-name').val(jobPosting.company);
-            $('#comp-zipCode').val(jobPosting.location);
-            $('#app-desc').val(jobPosting.descriptionTxt)
+
 
         }
 
         )
     })
-})
+
+    // $('#app-title').val(jobPosting.title);
+    // $('#comp-name').val(jobPosting.company);
+    // $('#comp-zipCode').val(jobPosting.location);
+    // $('#app-desc').val(jobPosting.descriptionTxt)
