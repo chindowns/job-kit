@@ -20,10 +20,12 @@
   "dependencies": {
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
+    "cross-fetch": "^3.0.4",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.3",
     "firebase-admin": "^8.11.0",
     "mysql2": "^2.1.0",
+    "node-fetch": "^2.6.0",
     "require": "^2.4.20",
     "sequelize": "^5.21.7"
   },

@@ -15,8 +15,7 @@ module.exports = function (app) {
                 { model: db.Company },
                 { model: db.Contact },
                 { model: db.Source },
-                { model: db.Stage,
-                    where: {currentStage: {[sequelize.Op.not]: "decline"}}},   
+                { model: db.Stage},   
             ],
             order: [
                 [db.Stage, 'createdAt', 'DESC'],
