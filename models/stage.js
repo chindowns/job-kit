@@ -2,7 +2,8 @@ module.exports = function(sequelize, DataTypes) {
     var Stage = sequelize.define("Stage", {
         // Current Stage in Process
         currentStage: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            defaultValue: "1 - Application" 
         },
         // Date when current stage started
         dateCurrentStage: {
@@ -21,9 +22,7 @@ module.exports = function(sequelize, DataTypes) {
 
 
     Stage.association = models => {
-        models.Stage.hasMany(models.Contact, {foreignKey: 'id'}, {
-
-        });
+        models.Stage.hasMany(models.Contact, {foreignKey: 'id'}, {});
     }
     return Stage;
 }

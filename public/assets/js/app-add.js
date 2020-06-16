@@ -44,7 +44,7 @@ $(function () {
             industry: $("#app-industry").val(),
             zipCode: appZip,
             salaryRange: $("#app-salary").val(),
-            dateApplied: $("#app-applied").val() ? new Date() : $("#app-applied").val(),
+            dateApplied: $("#app-applied").val() ? $("#app-applied").val() : new Date(),
             rating: interest,
             UserId: globalUserID
         }

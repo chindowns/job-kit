@@ -39,7 +39,7 @@ module.exports = function (sequelize, DataTypes) {
         // Date Applied - 
         // set to Now() if applying on jobs tab
         dateApplied: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
         },
         // Rating for Job using emojis (1-5)
         rating: {
