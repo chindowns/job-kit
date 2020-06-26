@@ -208,7 +208,10 @@ module.exports = function (app) {
                     required: true,
                     where: {
                         name: req.params.filter
-                    }
+                    },
+                    order: [
+                        ["db.Company.name", "ASC"]
+                    ]
                 },
                 { model: db.Contact },
                 { model: db.Source },
