@@ -15,10 +15,11 @@ module.exports = function (app) {
                 { model: db.Company },
                 { model: db.Contact },
                 { model: db.Source },
-                { model: db.Stage},   
+                { model: db.Stage,
+                order:[['db.Stage.currentStage', 'DESC']]},   
             ],
             order: [
-                [db.Stage, 'createdAt', 'DESC'],
+                [db.Stage, 'currentStage', 'DESC'],
             ]
         }).then(applications => {
             renderApps(applications, res, "partials/jobs/application-block");

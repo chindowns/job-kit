@@ -37,6 +37,9 @@ $(function () {
             appZip = $("#app-zipCode").val()
         }
 
+        let newDate = new Date();
+        let date = newDate.toString().slice(4, 16);
+    
         var newApp = {
             title: $("#app-title").val(),
             type: roleType,
@@ -44,7 +47,7 @@ $(function () {
             industry: $("#app-industry").val(),
             zipCode: appZip,
             salaryRange: $("#app-salary").val(),
-            dateApplied: $("#app-applied").val() ? $("#app-applied").val() : new Date(),
+            dateApplied: $("#app-applied").val() ? $("#app-applied").val() : date,
             rating: interest,
             UserId: globalUserID
         }

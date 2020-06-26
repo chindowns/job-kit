@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "password",
-    "database": "jobkitDB",
-    "host": "127.0.0.1",
+    "username": "uiridvio7pjeu804",
+    "password": "estbxib2pupziabu",
+    "database": "kpw8vi958ygb1j46",
+    "host": "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql",
     "operatorsAliases": false
   },
@@ -16,9 +16,7 @@
     "operatorsAliases": false
   },
   "production": {
-    "username": "uiridvio7pjeu804",
-    "password": "estbxib2pupziabu",
-    "database": "kpw8vi958ygb1j46",
+    "use_env_variable": "JAWSDB_URL",
     "host": "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql",
     "operatorsAliases": false
