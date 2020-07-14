@@ -1,7 +1,7 @@
 # JobKit
 https://job-kit.herokuapp.com
 
-With today’s competitive job market, many applicants need to apply to an ever increasing number of roles to ultimately land the position they want.   
+Today’s competitive job market requires applicants to apply to an ever increasing number of roles to ultimately land the position they want.   
 
 This process can be arduous over the course of several months so applicants can often lose track of useful information or forget specific details related to a job if they don’t hear back from a company right away.   
 
