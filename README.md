@@ -41,7 +41,7 @@ JobKit is a Full Stack Application utilizing MySQL as the database to store the 
 - GitHub API - Job Search
 
 ## Learning Points
-- Utilizing Agile developement, the team had a Full Stack MVP up and running in 2 days.  The team leared that the benefit of Agile development.  With an operating MVP in 2 days, the entire team could see each goal and implemented minor working updates frequently.
+- Utilizing Agile developement, the team had a Full Stack MVP up and running in 2 days.  The team learned the benefit of Agile development.  With an operating MVP in 2 days, the entire team could see each goal and implemented minor working updates frequently.
 
 - Integrating Handlebars into the application framework, required some learning to access dynamically generated elements with UIKit and Sequelize generated data.
 
