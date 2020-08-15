@@ -16,8 +16,12 @@ var db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+if (process.env.MODE_ENV === "production") {
+    app.use(express.static("client/build"))
+}
+
 // Routes
-app.use.routes();
+app.use(routes);
 
 // Syncing Sequelize Models
 db.sequelize.sync().then(function () {
