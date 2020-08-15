@@ -4,21 +4,18 @@ module.exports = function(sequelize, DataTypes) {
         name: {
             type: DataTypes.STRING
         },
-        // Contact Email
         email: {
             type: DataTypes.STRING,
             validate: {
                 isEmail: true
             }
         },
-        // Contact Phone
         phone: {
             type: DataTypes.STRING,
             allowNull: true,
         },
-        // Type of Contact - Recruiter, HR
-        type: {
-            type: DataTypes.STRING
+        notes: {
+            type: DataTypes.TEXT
         },
         
     });
