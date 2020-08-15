@@ -11,14 +11,6 @@ module.exports = function (sequelize, DataTypes) {
                 isEmail: true
             }
         },
-
-        // First and Last Name
-        name: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
-        // User Current Zipcode -
-        // used to locate new job opportunities 
         
     });
 
