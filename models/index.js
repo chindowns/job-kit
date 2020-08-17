@@ -5,13 +5,13 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+const config = require('../config/config.js')[env];
 const db = {};
 
 if (config.use_env_variable) {
-  const sequelize = new Sequelize(process.env[config.use_env_variable], { dialect: 'mysql', operatorsAliases:false });
+  var sequelize = new Sequelize(process.env[config.use_env_variable], { dialect: 'mysql', operatorsAliases: false });
 } else {
-  const sequelize = new Sequelize(config.database, config.username, config.password, { host: config.host, dialect: 'mysql', operatorsAliases: false });
+  var sequelize = new Sequelize(config.database, config.username, config.password, { host: config.host, dialect: 'mysql', operatorsAliases: false });
 }
 
 fs
@@ -32,5 +32,4 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-
 module.exports = db;

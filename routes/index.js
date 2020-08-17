@@ -9,4 +9,4 @@ router.get("*", function (req, res) {
     res.sendFile(path.join(_dirname, "../client/build/index.html"))
 })
 
-module.experts = router;
+module.exports = router;

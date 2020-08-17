@@ -7,12 +7,12 @@ router
     .post(controller.create)
     .get(controller.findAll)
     .put(controller.update)
-    .delete(controller.destroy);
+    .delete(controller.delete);
 
 // Matches with /api/application/:id
 router
     .route("/:id")
     .get(controller.findOne)
-    .delete(controller.destroy);
+    .delete(controller.delete);
 
 module.exports = router;

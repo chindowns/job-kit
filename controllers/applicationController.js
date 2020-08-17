@@ -32,4 +32,12 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
+    delete: (req, res) => {
+        db.Application.destroy({
+            where: {id: req.params.id}
+        })
+        .then(dbResults => res.send('Success'))
+        .catch(err => res.send(422).json(err));
+    }
+
 }

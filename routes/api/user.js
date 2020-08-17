@@ -7,12 +7,12 @@ router
     .post(userController.create)
     .get(userController.findAll)
     .put(userController.update)
-    .delete(userController.destroy);
+    // .delete(userController.destroy);
 
 // Matches with /api/user/:userEmail
 router
     .route("/:userEmail")
     .get(userController.findOne)
-    .delete(userController.destroy);
+    // .delete(userController.destroy);
 
 module.exports = router;

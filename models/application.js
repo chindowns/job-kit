@@ -1,12 +1,9 @@
-module.exports = function (sequelize, DataTypes) {
-    var Application = sequelize.define("Application", {
+module.exports = (sequelize, DataTypes) => {
+    const Application = sequelize.define("Application", {
         // Job Title - "Software Engineer"
         title: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
+            allowNull: false
         },
                 // Job Description
         description: {
@@ -26,13 +23,6 @@ module.exports = function (sequelize, DataTypes) {
         }
      
     });
-
-    Application.associate = models => {
-        
-        models.Application.hasMany(models.Notes, {
-            onDelete: "cascade"
-        });
-    }
 
     return Application;
 
