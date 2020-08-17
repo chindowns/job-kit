@@ -5,11 +5,7 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-<<<<<<< HEAD
 const config = require('../config/config.js')[env];
-=======
-const config = require(__dirname + '/../config/config.js')[env];
->>>>>>> 4fae00a92d9117b6a7fe5ab082ee79dd58743ef9
 const db = {};
 
 if (config.use_env_variable) {
