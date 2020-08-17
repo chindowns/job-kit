@@ -18,6 +18,12 @@
   },
   "homepage": "https://jobkit.chindowns.app",
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "cross-fetch": "^3.0.4",
+>>>>>>> 4fae00a92d9117b6a7fe5ab082ee79dd58743ef9
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mysql2": "^2.1.0",
