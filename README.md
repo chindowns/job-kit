@@ -1,5 +1,5 @@
 # JobKit
-https://job-kit.chindowns.app
+https://jobmanager.chindowns.app
 
 Today’s competitive job market requires applicants to apply to an ever increasing number of roles to ultimately land the position they want.   
 
