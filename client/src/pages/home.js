@@ -11,6 +11,8 @@ export default () => {
        if (keys.length > 0)  {history.replace('/view')} ;
     })
 
+    console.log(process.env);
+
     return (
         <div id="jumbo" className="radius">
             <h1 className="text-shadow slate-blue">Job Application Manager</h1>

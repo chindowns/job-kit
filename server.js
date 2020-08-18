@@ -1,7 +1,7 @@
+require('dotenv').config();
 const express = require("express");
 const db = require("./models");
 const routes = require('./routes');
-require('dotenv').config();
 
 // Set up the Express App
 const app = express();

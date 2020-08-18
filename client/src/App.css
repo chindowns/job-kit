@@ -40,8 +40,8 @@
 }
 
 .form-add {
-  justify-content: center;
   display: flexbox;
+  justify-content: center;
   flex-direction: row wrap;
 }
 
