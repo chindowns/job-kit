@@ -1,98 +1,61 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import '../firebase/initFirebase'
+import * as firebase from 'firebase';
+import * as firebaseui from 'firebaseui'
+
 
 export default () => {
-    const SignUp = () => {
-        const [email, setEmail] = useState("");
-        const [password, setPassword] = useState("");
-        const [displayName, setDisplayName] = useState("");
-        const [error, setError] = useState(null);
-        const createUserWithEmailAndPasswordHandler = (event, email, password) => {
-            event.preventDefault();
-            setEmail("");
-            setPassword("");
-            setDisplayName("");
-        };
-        const onChangeHandler = event => {
-            const { name, value } = event.currentTarget;
-            if (name === "userEmail") {
-                setEmail(value);
-            } else if (name === "userPassword") {
-                setPassword(value);
-            } else if (name === "displayName") {
-                setDisplayName(value);
+
+    // define history
+    const history = useHistory();
+    
+    // Initialize the FirebaseUI Widget using Firebase.
+    let ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+    let uiConfig = {
+        callbacks: {
+            signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+                // User successfully signed in.
+                // Return type determines whether we continue the redirect automatically
+                // or whether we leave that to developer to handle.
+                return true;
+            },
+            uiShown: function () {
+                // The widget is rendered.
+                // Hide the loader.
+                document.getElementById('loader').style.display = 'none';
             }
-        };
-        return (
-            <div className="mt-8">
-                <h1 className="form-label">Sign Up</h1>
-                <div className="border border-blue-400 mx-auto w-11/12 md:w-2/4 rounded py-8 px-4 md:px-8">
-                    {error !== null && (
-                        <div className="py-4 bg-red-600 w-full text-white text-center mb-3">
-                            {error}
-                        </div>
-                    )}
-                    <form className="">
-                        <label htmlFor="displayName" className="block">
-                            Display Name:
-          </label>
-                        <input
-                            type="text"
-                            className="my-1 p-1 w-full "
-                            name="displayName"
-                            value={displayName}
-                            placeholder="E.g: Faruq"
-                            id="displayName"
-                            onChange={event => onChangeHandler(event)}
-                        />
-                        <label htmlFor="userEmail" className="block">
-                            Email:
-          </label>
-                        <input
-                            type="email"
-                            className="my-1 p-1 w-full"
-                            name="userEmail"
-                            value={email}
-                            placeholder="E.g: faruq123@gmail.com"
-                            id="userEmail"
-                            onChange={event => onChangeHandler(event)}
-                        />
-                        <label htmlFor="userPassword" className="block">
-                            Password:
-          </label>
-                        <input
-                            type="password"
-                            className="mt-1 mb-3 p-1 w-full"
-                            name="userPassword"
-                            value={password}
-                            placeholder="Your Password"
-                            id="userPassword"
-                            onChange={event => onChangeHandler(event)}
-                        />
-                        <button
-                            className="bg-green-400 hover:bg-green-500 w-full py-2 text-white"
-                            onClick={event => {
-                                createUserWithEmailAndPasswordHandler(event, email, password);
-                            }}
-                        >
-                            Sign up
-                        </button>
-                    </form>
-                    <p className="text-center my-3">or</p>
-                    <button
-                        className="bg-red-500 hover:bg-red-600 w-full py-2 text-white"
-                        onClick={e => {signInWithGoogle()}}
-                    >
-                        Sign In with Google
-                    </button>
-                    <p className="text-center my-3">
-                        Already have an account?{" "}
-                        <Link to="/" className="text-blue-500 hover:text-blue-600">
-                            Sign in here
-          </Link>
-                    </p>
-                </div>
-            </div>
-        );
+        },
+        // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+        signInFlow: 'popup',
+        signInSuccessUrl: history.push('/view'),
+        signInOptions: [
+            // Leave the lines as is for the providers you want to offer your users.
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            {
+                provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+                signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
+                requireDisplayName: false,
+                // Allow cross device sign-in
+                forceSameDevice: false,
+            }
+        ],
+        // Terms of service url.
+        tosUrl: "",
+        // Privacy policy url.
+        privacyPolicyUrl: ""
     };
+
+    ui.start('#firebaseui-auth-container', uiConfig);
+    
+    return (
+        <>
+        // Define where FirebaseUI sign-in widget renders
+
+        </>
+    )
+    
+
 }
+

@@ -1,5 +1,5 @@
 {
-  "name": "job-kit-light",
+  "name": "job-application-manager",
   "version": "2.0.0",
   "description": "",
   "main": "server.js",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chindowns/job-kit.git"
+    "url": "git+htt ps://github.com/chindowns/job-manager.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/chindowns/job-kit"
+    "url": "https://github.com/chindowns/job-manager"
   },
-  "homepage": "https://jobkit.chindowns.app",
+  "homepage": "https://jam.chindowns.app",
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

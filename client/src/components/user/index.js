@@ -4,18 +4,14 @@ import SignIn from "./signIn";
 import SignUp from "./signUp";
 import ProfilePage from "./profilePage";
 import PasswordReset from "./passwordReset";
-function User() {
+
+export default () => {
+
   const user = null;
+
   return (
-        user ?
-        <ProfilePage />
-      :
-        <Router>
-          <SignUp path="signUp" />
-          <SignIn path="/" />
-          <PasswordReset path = "passwordReset" />
-        </Router>
+    <h1> User </h1>
 
   );
+
 }
-export default User;
