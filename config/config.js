@@ -15,7 +15,9 @@ module.exports = {
     "operatorsAliases": false
   },
   "production": {
-    "use_env_variable": "JAWSDB_URL",
+    "username": process.env.JAMDB_USERNAME,
+    "password": process.env.JAMDB_PASSWORD,
+    "database": process.env.JAMDB_DATABASE,
     "dialect": "mysql",
     "operatorsAliases": false
   }
