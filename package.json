@@ -2,7 +2,8 @@
   "name": "job-application-manager",
   "version": "2.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "app.js",
+  "homepage": "https://chindowns.app/jam",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
@@ -20,7 +21,6 @@
   "bugs": {
     "url": "https://github.com/chindowns/job-manager"
   },
-  "homepage": "https://jam.chindowns.app",
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
