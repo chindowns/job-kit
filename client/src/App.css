@@ -111,6 +111,10 @@ button[type=submit]:focus{
   color: snow;
 }
 
+button.btn-small {
+  width: 250px;
+}
+
 .note-head {
     display: flex;
     flex-wrap: justify-content-between;

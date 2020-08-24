@@ -21,6 +21,7 @@ function App() {
   console.log(showModal)
 
   return (
+    <User>
     <div className="App">
       <header className="">
         <div id="brand">
@@ -54,6 +55,8 @@ function App() {
       </Router>
       
       <Modal showModal = {showModal} ></Modal>
+
+      
       
       <footer className="footer">
         &copy; Copyright { currentYear }, All Rights Reserved
@@ -65,6 +68,7 @@ function App() {
 
       </footer>
     </div>
+    </User>
   );
 }
 

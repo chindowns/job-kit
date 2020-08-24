@@ -1,12 +1,13 @@
 import React from 'react';
-import ProfilePage from '../components/user/profilePage'
-import SignUp from '../components/user/signUp.js'
+import * as firebase from '../components/firebase';
+import SignIn from '../components/user/signIn.js';
+import {useHistory} from 'react-router-dom'
 
 export default () => {
 
-    const user = null;
+    const history = useHistory();
 
     return(
-    <SignUp />
+    <SignIn />
     );
 }
