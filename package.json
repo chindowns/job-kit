@@ -2,7 +2,7 @@
   "name": "job-application-manager",
   "version": "2.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "homepage": "https://chindowns.app/jam",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
