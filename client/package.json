@@ -1,6 +1,6 @@
 {
   "name": "job-application-manager",
-  "homepage": "https://jam.chindowns.app",
+  "homepage": "https://chindowns.app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

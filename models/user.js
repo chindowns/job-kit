@@ -1,7 +1,7 @@
 
 // Constructs the User model
 module.exports = function (sequelize, DataTypes) {
-    var User = sequelize.define("User", {
+    const User = sequelize.define("User", {
         // User Email - used as username
         email: {
             type: DataTypes.STRING,

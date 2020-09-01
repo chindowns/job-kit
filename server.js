@@ -1,10 +1,15 @@
-require('dotenv').config();
+if(process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
+
 const express = require("express");
+const app = express();
+
 const db = require("./models");
+
 const routes = require('./routes');
 
 // Set up the Express App
-const app = express();
 const PORT = process.env.PORT;
 
 
@@ -12,12 +17,12 @@ const PORT = process.env.PORT;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Routes
-app.use(routes);
-
-if (process.env.MODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"))
 }
+
+// Routes
+app.use(routes);
 
 // Syncing Sequelize Models
 db.sequelize.sync().then(function () {

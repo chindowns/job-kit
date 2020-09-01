@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {useHistory} from 'react-router-dom'
 import firebase from '../firebase'
 
@@ -24,16 +24,23 @@ export default () => {
             // dynamicLinkDomain: 'http://localhost'
         }
 
+        // GET the previous user email
+        var userReturn = window.localStorage.getItem('user');
+
+        // If previous user is the current user, already logged in.
+        // Need to add the logic
+        if(userReturn !== email){}
+
         // SEND email for authentication
         firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
             .then(() => {
                 window.localStorage.setItem('emailForSignIn', email);
+                // make a message notifying user to check their email
             })
             .catch(err => console.log(err));
 
         // Confirm the link is a sign-in with email link.
         if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
-            // var email = window.localStorage.getItem('emailForSignIn');
             if (!email) {
                 email = window.prompt('Please provide your email for confirmation');
             }

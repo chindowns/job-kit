@@ -24,15 +24,13 @@
   "dependencies": {
     "express": "^4.17.1",
     "mysql2": "^2.1.0",
-    "nodemon": "^2.0.4",
     "sequelize": "^5.22.3",
     "if-env": "^1.0.4"
   },
   "devDependencies": {
     "concurrently": "^5.1.0",
-    "nodemon": "^2.0.2",
-    "dotenv": "^8.2.0"
-
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4"
   },
   "keywords": [
     "MERN",

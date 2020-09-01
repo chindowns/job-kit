@@ -5,14 +5,9 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV;
-const config = require('../config/config.js')[env];
 const db = {};
 
-if (config.use_env_variable) {
-  var sequelize = new Sequelize(process.env[config.use_env_variable], { dialect: 'mysql', operatorsAliases: false });
-} else {
-  var sequelize = new Sequelize(config.database, config.username, config.password, { host: config.host, dialect: 'mysql', operatorsAliases: false });
-}
+var sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, { host: process.env.DB_HOST, dialect: 'mysql', operatorsAliases: 0 });
 
 fs
   .readdirSync(__dirname)

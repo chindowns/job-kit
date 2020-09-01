@@ -46,8 +46,8 @@ function App() {
       <Router >
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/user" component={User} />
           <Route exact path="/home" component={Home} />
+          {/* <Route exact path="/user" component={User} /> */}
           <Route exact path="/view" component={ViewApplication} />
           <Route exact path="/add" component={AddApplication} />
           <Route exact path="/edit" component={EditApplication} />
