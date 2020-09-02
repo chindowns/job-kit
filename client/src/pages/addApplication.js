@@ -4,7 +4,7 @@ import { Store, set } from 'idb-keyval';
 export default () => {
 
     const [application, setApplication] = useState({});
-    const [jobDescription, setJobDescription] = useState({});
+    // const [jobDescription, setJobDescription] = useState({});
 
     const today = new Date().toISOString().slice(0, 10);
     const applicationStore = new Store('job-manager', 'applications')
@@ -13,9 +13,9 @@ export default () => {
         e.preventDefault();
         console.log("Submit Form")
         const newApplication = {
-            "companyName": application.companyName,
-            "jobTitle": application.jobTitle,
-            "jobDescription": application.jobDescription,
+            "company": application.companyName,
+            "title": application.jobTitle,
+            "description": application.jobDescription,
             "source": application.source,
             "resume": application.resume,
             "dateApplied": today,
