@@ -47,17 +47,17 @@ export default () => {
 
   // Confirm the link is a sign-in with email link.
   if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
+    console.log("Signing in FROM email link...\nGetting emailForSignIn")
     emailForSignIn = window.localStorage.getItem('emailForSignIn')
 
     // if (!emailForSignIn) {
     //   email = window.prompt('Please provide your email for confirmation');
     // }
 
-
-
     // The client SDK parses the code from the link.
     firebase.auth().signInWithEmailLink(emailForSignIn, window.location.href)
       .then(result => {
+        console.log("=== Firebase Returned Result ===")
         console.log(result)
         // if (result.user.email === email)
 
@@ -106,9 +106,7 @@ export default () => {
       })
       .catch(err => {
         console.log(err);
-        window.localStorage.removeItem('emailForSignIn');
       });
-      console.log(user);
   }
 
   return (

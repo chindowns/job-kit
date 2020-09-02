@@ -10,13 +10,12 @@ module.exports = {
                     id: dbUser.dataValues.id,
                     email: dbUser.dataValues.email
                 }
-                res.json(User)
-                console.log("-------------- dbUser --------------")
-                console.log(dbUser)
-
-                console.log("------------------------------------")
-                console.log("============= User ==================")
-                console.log(User)
+                res.json(User);
+                console.log("-------------- dbUser --------------");
+                console.log(dbUser);
+                console.log("------------------------------------");
+                console.log("============= User =================");
+                console.log(User);
             })
             .catch(err => res.status(422).json(err));
     },
@@ -43,7 +42,7 @@ module.exports = {
                 console.log(dbUser)
                 
                 console.log("------------------------------------")
-                console.log("============= User ==================")
+                console.log("============= User =================")
                 console.log(User)
             })
             .catch(err => res.status(422).json(err));
