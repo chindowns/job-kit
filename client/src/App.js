@@ -21,7 +21,6 @@ function App() {
   console.log(showModal)
 
   return (
-    <User>
     <div className="App">
       <header className="">
         <div id="brand">
@@ -47,7 +46,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/home" component={Home} />
-          {/* <Route exact path="/user" component={User} /> */}
+          <Route exact path="/user" component={User} />
           <Route exact path="/view" component={ViewApplication} />
           <Route exact path="/add" component={AddApplication} />
           <Route exact path="/edit" component={EditApplication} />
@@ -68,7 +67,6 @@ function App() {
 
       </footer>
     </div>
-    </User>
   );
 }
 
