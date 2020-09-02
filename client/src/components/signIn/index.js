@@ -22,7 +22,7 @@ export default () => {
     console.log(email);
     // FIREBASE SignIn by Email Link Settings
     const actionCodeSettings = {
-      url: 'http://localhost:3400/user',
+      url: 'http://localhost:3000/user',
       handleCodeInApp: true,
       iOS: {},
       android: {}
