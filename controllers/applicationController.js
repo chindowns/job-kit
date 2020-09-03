@@ -3,6 +3,7 @@ const db = require("../models");
 //Defining methods for the UserController
 module.exports = {
     create: (req, res) => {
+        console.log('Submit New Application', req.body)
         db.Application.create(req.body)
         .then(dbResults => {res.json(dbResults.id)})
         .catch(err => res.status(422).json(err));

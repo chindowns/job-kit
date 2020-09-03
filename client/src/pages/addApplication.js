@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Store, set } from 'idb-keyval';
+import {useHistory} from 'react-router-dom';
+import axios from 'axios';
 
 export default () => {
 
@@ -7,24 +9,30 @@ export default () => {
     // const [jobDescription, setJobDescription] = useState({});
 
     const today = new Date().toISOString().slice(0, 10);
-    const applicationStore = new Store('job-manager', 'applications')
+    // const applicationStore = new Store('job-manager', 'applications')
+
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Submit Form")
         const newApplication = {
-            "company": application.companyName,
-            "title": application.jobTitle,
-            "description": application.jobDescription,
+            "company": application.company,
+            "title": application.title,
+            "description": application.description,
             "source": application.source,
             "resume": application.resume,
             "dateApplied": today,
             "stage": "1 - Applied"
         }
 
-        set(application.companyName, newApplication, applicationStore)
-            .then(() => window.location.reload(false))
-            .catch((err) => console.log('It failed!', err));
+        axios.post('/api/application', newApplication)
+        .then(res => history.replace('view')) 
+        .catch(err => console.log("Error: ", err));
+
+        // set(application.companyName, newApplication, applicationStore)
+        //     .then(() => window.location.reload(false))
+        //     .catch((err) => console.log('It failed!', err));
 
     }
 
@@ -34,44 +42,44 @@ export default () => {
                 <label className="form-label">Company Name<br />
                 <input id="inputCompanyName"
                     type="text"
-                    name="companyName"
-                    onChange={e => setApplication({ ...application, 'companyName': e.target.value })}
-                    placeholder="Company Name" />
+                    name="company"
+                    placeholder="Company Name"
+                    onChange={e => setApplication({ ...application, 'company': e.target.value })} />
                 </label>
                 <label className="form-label">Job Title<br />
                 <input id="inputJobTitle"
                     type="text"
-                    name="jobTitle"
-                    onChange={e => setApplication({ ...application, 'jobTitle': e.target.value })}
-                    placeholder="Job Title" />
+                    name="title"
+                    placeholder="Job Title"
+                    onChange={e => setApplication({ ...application, 'title': e.target.value })} />
                 </label>
                 <br />
                 <label className="form-label">Link to Job Posting<br />
-                <input id="inpurtSource"
+                <input id="inputSource"
                     type="url"
                     name="source"
+                    placeholder="Link to Source"
                     onChange={e => {
                         setApplication({ ...application, 'source': e.target.value });
-                        fetch(application.source)
-                        .then(response => console.log(response))
-                }}
-                    placeholder="Link to Source" />
+                        // fetch(application.source)
+                        // .then(response => console.log(response))
+                }} />
                 </label>
                 <label className="form-label">Link to Resume Used<br />
                 <input id="inputResume"
                     type="url"
                     name="resume"
-                    onChange={e => setApplication({ ...application, 'resume': e.target.value })}
-                    placeholder="Link to Resume" />
+                    placeholder="Link to Resume"
+                    onChange={e => setApplication({ ...application, 'resume': e.target.value })} />
                 </label>
                 <br />
                 <label className="form-label">Job Description<br />
                 <textarea id="inputJobDescription"
                     type="textarea"
-                    name="jobDescription-Overview"
+                    name="description"
                     wrap="soft"
-                        onChange={e => setApplication({ ...application, 'jobDescription': e.target.value })}
-                    placeholder="Job Description" />
+                    placeholder="Job Description"
+                    onChange={e => setApplication({ ...application, 'description': e.target.value })} />
                 </label>
                 <br />
 
