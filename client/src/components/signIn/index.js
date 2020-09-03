@@ -4,7 +4,7 @@ import firebase from '../../utils/firebase';
 import axios from 'axios';
 
 export default () => {
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
   const [email, setEmail] = useState();
 
   const history = useHistory();
@@ -15,7 +15,7 @@ export default () => {
       setEmail(emailForSignIn);
     }
     console.log(email);
-  }, [emailForSignIn])
+  }, [emailForSignIn, email])
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -70,9 +70,9 @@ export default () => {
           })
             .then(res => {
               console.log(`Signed In New User: ${res.data.id} ${res.data.email}`)
-              setUser(res.data);
-              window.sessionStorage.setItem('userID', res.data.id);
-              window.sessionStorage.setItem('userEmail', res.data.email);
+              // setUser(res.data);
+              window.localStorage.setItem('userID', res.data.id);
+              window.localStorage.setItem('userEmail', res.data.email);
               // Clear email from storage.
               window.localStorage.removeItem('emailForSignIn');
 
@@ -88,9 +88,9 @@ export default () => {
             .then(res => {
               console.log(res.data);
               console.log(`Signed In User: ${res.data.id} ${res.data.email}`);
-              setUser(res.data);
-              window.sessionStorage.setItem('userID', res.data.id);
-              window.sessionStorage.setItem('userEmail', res.data.email);
+              // setUser(res.data);
+              window.localStorage.setItem('userID', res.data.id);
+              window.localStorage.setItem('userEmail', res.data.email);
               // Clear email from storage.
               window.localStorage.removeItem('emailForSignIn');
 

@@ -9,16 +9,21 @@ module.exports = {
         .catch(err => res.status(422).json(err));
     },
 
-    findAll: (req, res) => {
-        db.Application.findAll({})
-        .then(dbResults => {res.json(dbResults)})
+    // Find All Applications for a specific USER
+    findAllUserApps: (req, res) => {
+        console.log(`Find All User ${req.params.userId} Applications`);
+        db.Application.findAll({
+            where: {UserId: req.params.userId},
+            // include: [db.Note]
+            })
+        .then(response => res.json(response))
         .catch(err => res.status(422).json(err));
     },
 
     findOne: (req, res) => {
         db.Application.findOne({
             where: {id: req.params.id},
-            include: [db.Notes]
+            include: [db.Note]
         })
         .then(dbResults => { res.json(dbResults) })
         .catch(err => res.status(422).json(err));

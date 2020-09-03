@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Store, set } from 'idb-keyval';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 
@@ -10,6 +9,10 @@ export default () => {
 
     const today = new Date().toISOString().slice(0, 10);
     // const applicationStore = new Store('job-manager', 'applications')
+
+    const userId = window.localStorage.getItem('userID');
+    // get usrID
+
 
     const history = useHistory();
 
@@ -23,7 +26,8 @@ export default () => {
             "source": application.source,
             "resume": application.resume,
             "dateApplied": today,
-            "stage": "1 - Applied"
+            "stage": "1 - Applied",
+            "UserId": userId
         }
 
         axios.post('/api/application', newApplication)

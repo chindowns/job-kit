@@ -11,9 +11,9 @@ module.exports = {
                     email: dbUser.dataValues.email
                 }
                 res.json(User);
-                console.log("-------------- dbUser --------------");
-                console.log(dbUser);
-                console.log("------------------------------------");
+                // console.log("-------------- dbUser --------------");
+                // console.log(dbUser);
+                // console.log("------------------------------------");
                 console.log("============= User =================");
                 console.log(User);
             })
@@ -38,10 +38,9 @@ module.exports = {
                     email: dbUser.dataValues.email
                 }
                 res.json(User)
-                console.log("-------------- dbUser --------------")
-                console.log(dbUser)
-                
-                console.log("------------------------------------")
+                // console.log("-------------- dbUser --------------")
+                // console.log(dbUser)
+                // console.log("------------------------------------")
                 console.log("============= User =================")
                 console.log(User)
             })

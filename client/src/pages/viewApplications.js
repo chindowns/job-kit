@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import Row from 'react-bootstrap/Row' ;
 import Card from '../components/cards';
-import { Store, get, keys } from 'idb-keyval';
+import axios from 'axios';
+// import { Store, get, keys } from 'idb-keyval';
 
 export default () => {
-    const applicationStore = new Store('job-manager', 'applications');
-    const [applications, setApplications] = useState([])
+  // const applicationStore = new Store('job-manager', 'applications');
+  const [applications, setApplications] = useState([])
+
+  // set the user
+  const userId = window.localStorage.getItem('userID')
 
     useEffect(() => {
-        loadApplications();
-    },[])
+      if(applications.length === 0){
+        axios.get(`/api/application/${userId}`)
+          .then(res => setApplications(res.data))
+      }
+    },[applications, userId])
 
-    function loadApplications() {
-        keys(applicationStore).then(keys => {
-            keys.forEach(key => {
-                get(key, applicationStore).then(jobApp => setApplications(applications => [...applications, jobApp]))
-            })
-        })
-    }
 
     // Campares the property value of Stage for each application
     function compareValues(stage, order = 'desc') {
