@@ -18,7 +18,7 @@ export default () => {
       }
     },[applications, userId])
 
-
+    console.log(applications);
     // Campares the property value of Stage for each application
     function compareValues(stage, order = 'desc') {
         // Sorts the application by 'stage' in descending order so '0-declined' goes to the end of the list

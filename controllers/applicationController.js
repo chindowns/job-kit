@@ -14,7 +14,7 @@ module.exports = {
         console.log(`Find All User ${req.params.userId} Applications`);
         db.Application.findAll({
             where: {UserId: req.params.userId},
-            // include: [db.Note]
+            include: [db.Note]
             })
         .then(response => res.json(response))
         .catch(err => res.status(422).json(err));

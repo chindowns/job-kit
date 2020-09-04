@@ -6,9 +6,9 @@ import Note from '../components/notes'
 export default (props) => {
 
     const [application, setApplication] = useState({});
-    const [jobDescription, setJobDescription] = useState({});
+    // const [description, setdescription] = useState({});
     const [contactNote, setContactNote] = useState({});
-    const [editJobDescription, setEditJobDescription] = useState(false)
+    const [editdescription, setEditdescription] = useState(false)
     // const [notes, setNotes] = useState([]);
 
     const today = new Date().toISOString().slice(0, 10);
@@ -18,16 +18,16 @@ export default (props) => {
     let tempApp = {};
     let tempNotes = [];
 
-    // Setting State for application, jobDescription & 
+    // Setting State for application, description & 
     props.location.data.application ? tempApp = props.location.data.application : tempApp = {};
-    // props.location.data.application.jobDescription ? tempJobDescription = props.location.data.application.jobDescription : tempJobDescription = {};
+    console.log(props.location.data);
+    // props.location.data.application.description ? tempdescription = props.location.data.application.description : tempdescription = {};
 
     // Setting tempNotes to props so contactNote can be added with push.
-    props.location.data.application.notes ? tempNotes = props.location.data.application.notes : tempNotes = [];
+    props.location.data.application.Notes ? tempNotes = props.location.data.application.Notes : tempNotes = [];
 
     useEffect(() => {
         setApplication(tempApp);
-        setJobDescription(tempApp.jobDescription);
     }, [tempApp])
 
     const handleSubmit = (e) => {
@@ -39,41 +39,38 @@ export default (props) => {
         };
 
         const updateApplication = {
-            "companyName": application.companyName,
-            "jobTitle": application.jobTitle,
-            "jobDescription": application.jobDescription,
+            "id": application.id,
+            "company": application.company,
+            "title": application.title,
+            "description": application.description,
             "source": application.source,
             "resume": application.resume,
             "dateApplied": application.dateApplied,
             "stage": application.stage,
-            "notes": tempNotes
+            "Notes": tempNotes
         }
 
-        del(application.companyName, applicationStore)
-            .then(() => {
-                set(application.companyName, updateApplication, applicationStore)
-                    .then(() => history.replace('/view'))
-                    .catch((err) => console.log('It failed!', err));
-            })
+        
             .catch((err) => console.log('Failed to delete', err));
     }
 
     return (
         <div className='form'>
             <form className="form-group" onSubmit={handleSubmit}>
+
                 <label className="form-label">Company Name<br />
-                    <input id="editCompanyName"
+                    <input id="editCompany"
                         readOnly="readOnly"
                         type="text"
-                        name="companyName"
-                        value={tempApp.companyName} />
+                        name="company"
+                        value={tempApp.company} />
                 </label>
                 <label className="form-label">Job Title<br />
-                    <input id="editJobTitle"
+                    <input id="edittitle"
                         type="text"
-                        name="jobTitle"
-                        defaultValue={tempApp.jobTitle}
-                        onChange={e => setApplication({ ...application, 'jobTitle': e.target.value ? e.target.value : tempApp.jobTitle })} />
+                        name="title"
+                        defaultValue={tempApp.title}
+                        onChange={e => setApplication({ ...application, 'title': e.target.value ? e.target.value : tempApp.title })} />
                 </label>
                 <br />
                 <label className="form-label">Link to Job Posting<br />
@@ -107,26 +104,29 @@ export default (props) => {
                     </datalist>
                 </label>
                 <br />
-                {editJobDescription ?
+
+                {editdescription ?
                     (<><label className="form-label">Job Description<br />
-                        <textarea id="editJobDescription"
+                        <textarea id="editdescription"
                             type="textarea"
-                            name="jobDescription"
+                            name="description"
                             wrap="soft"
-                            defaultValue={tempApp.jobDescription}
-                            onChange={e => setApplication({ ...application, 'jobDescription': e.target.value ? e.target.value : tempApp.jobDescription })} />
+                            defaultValue={tempApp.description}
+                            onChange={e => setApplication({ ...application, 'description': e.target.value ? e.target.value : tempApp.description })} />
                        </label>
                     </>)
                     :
                     <label className="form-label">Job Description<br />
                         <div className="radius text-left">
-                            <div className="fa fa-pencil-square-o" style={{ position: "relative", float: "right", padding: "1px 3px 1px 7px" }} onClick={e => setEditJobDescription(true)}>
+                            <div className="fa fa-pencil-square-o" style={{ position: "relative", float: "right", padding: "1px 3px 1px 7px" }} onClick={e => setEditdescription(true)}>
                             </div>
-                            {tempApp.jobDescription}
+                            {tempApp.description}
                             <br />
                         </div>
+                    
                     </label>
                 }
+
                 <br />
                 {tempNotes ?
                     <label className="form-label">Notes
