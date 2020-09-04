@@ -30,9 +30,10 @@ module.exports = {
     },
 
     update: (req, res) => {
-        db.Application.findOne({
+        console.log(`Updating Application ${req.params.id} for ${req.params.userId}`)
+        db.Application.update(req.body, {
             where: { id: req.params.id },
-            include: [db.Notes]
+            include: [{model: db.Note}]
         })
             .then(dbResults => { res.json(dbResults) })
             .catch(err => res.status(422).json(err));

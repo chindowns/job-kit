@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Store, del, set } from 'idb-keyval';
+// import { Store, del, set } from 'idb-keyval';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import Note from '../components/notes'
 
@@ -13,7 +14,7 @@ export default (props) => {
 
     const today = new Date().toISOString().slice(0, 10);
 
-    const applicationStore = new Store('job-manager', 'applications')
+    // const applicationStore = new Store('job-manager', 'applications')
     const history = useHistory();
     let tempApp = {};
     let tempNotes = [];
@@ -35,6 +36,8 @@ export default (props) => {
 
         // don't push an empty note
         if (contactNote.hasOwnProperty('note')) {
+            axios.post('/api/notes', contactNote)
+            .then(res => console.log(res))
             tempNotes.push(contactNote)
         };
 
@@ -50,8 +53,14 @@ export default (props) => {
             "Notes": tempNotes
         }
 
-        
-            .catch((err) => console.log('Failed to delete', err));
+        console.log(updateApplication)
+
+        axios.put(`/api/application/${application.userId}-${application.id}`, updateApplication)
+        .then(res => {
+            console.log(res.status);
+            history.replace('/view')
+        })
+        .catch((err) => console.log('Failed to update', err));
     }
 
     return (
@@ -146,7 +155,13 @@ export default (props) => {
                     <textarea id="addNote"
                         type="textarea"
                         name="note"
-                        onChange={e => setContactNote({ ...contactNote, 'note': e.target.value })} />
+                        onChange={e => {setContactNote({ ...contactNote, 
+                            'note': e.target.value,
+                            'ApplicationId': tempApp.id,
+                            'createdAt': today,
+                            'updatedAt': today
+                        })
+                        }} />
                 </label><br />
                 <button type="submit">Submit Application</button>
             </form>

@@ -1,23 +1,23 @@
 const db = require("../models");
 
-//Defining methods for the NotesController
 module.exports = {
     create: (req, res) => {
-        db.Notes.create(req.body)
+        console.log("Add New Note for Application "+req.body.ApplicationId)
+        db.Note.create(req.body)
             .then(dbResults => res.json(dbResults))
             .catch(err => res.status(422).json(err));
     },
 
     findAll: (req, res) => {
         console.log(`Find All Notess`)
-        db.Notes.findAll({})
+        db.Note.findAll({})
             .then(dbResults => res.json(dbResults))
             .catch(err => res.status(422).json(err));
     },
 
     findOne: (req, res) => {
         console.log(req);
-        db.Notes.findOne(
+        db.Note.findOne(
             {
             where: { id: req.params.id },
             }
@@ -27,9 +27,17 @@ module.exports = {
     },
 
     update: function (req, res) {
-        db.Notes.update(req.body,
+        db.Note.update(req.body,
             { where: { id: req.body.id } })
             .then(dbResults => res.json(dbResults))
             .catch(err => res.status(422).json(err));
+    },
+
+    destroy: (req, res) => {
+        db.Note.destroy({
+            where: req.body
+        })
+        .then(dbResults => res.json(dbResults))
+        .catch(err => res.status(422).json(err));
     }
 }

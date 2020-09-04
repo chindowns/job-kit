@@ -13,6 +13,5 @@ router
 router
     .route("/:id")
     .get(controller.findOne)
-    .delete(controller.destroy);
 
 module.exports = router;

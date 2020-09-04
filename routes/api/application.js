@@ -6,7 +6,6 @@ router
     .route("/")
     .post(controller.create)
     // .get(controller.findAll)
-    .put(controller.update)
     .delete(controller.delete);
 
 // Matches with /api/application/user/id for all appliactions by userId
@@ -16,8 +15,9 @@ router
 
 // Matches with /api/application/:id
 router
-    .route("/:userId,:id")
+    .route("/:userId-:id")
     .get(controller.findOne)
+    .put(controller.update)
     .delete(controller.delete);
 
 module.exports = router;
