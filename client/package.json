@@ -1,6 +1,5 @@
 {
   "name": "job-application-manager",
-  "homepage": "https://chindowns.app/jam",
   "proxy": "http://localhost:3400",
   "version": "0.1.0",
   "private": true,
