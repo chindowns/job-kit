@@ -10,7 +10,7 @@ const db = require("./models");
 const routes = require('./routes');
 
 // Set up the Express App
-const PORT = process.env.PORT;
+const PORT = process.env.PORT | 8080;
 
 
 // Parse Request Body as JSON
