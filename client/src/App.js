@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-// USE HashRouter vs BrowserRouter to display on G
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
 import { Nav, Form, FormControl, Button} from 'react-bootstrap';
 
 import logo from './logo-white.png';
@@ -18,6 +17,8 @@ function App() {
 
   const currentYear = new Date().getFullYear();
 
+  const history = useHistory();
+
   console.log(showModal)
 
   return (
@@ -30,14 +31,13 @@ function App() {
         </p>
         </div>
 
-        <Nav variant="" className="nav">
+        <Nav variant="" className="navGroup">
           <Nav.Link id="view" className="nav" href="/view">View App</Nav.Link>
           <Nav.Link className="nav" href="/add">Add App</Nav.Link>
-          <Nav.Link href="/user">Login</Nav.Link>
         </Nav>
-        <Form inline id="search-form">
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-info">Search</Button>
+        <Form inline id="search-form" className="dispNone">
+            <FormControl type="text" placeholder="Search" className="mr-sm-2 dispNone" />
+            <Button className="dispNone" variant="outline-info">Search</Button>
         </Form>
 
       </header>
@@ -63,7 +63,16 @@ function App() {
         <Button 
           variant="white" 
           id="feedback"
-          onClick={() => setShowModal(true)} >Leave Comment</Button>
+          onClick={() => setShowModal(true)} >
+            Leave Comment
+          </Button>
+
+        <Button
+          variant="white"
+          id="login"
+          onClick={() => history.replace('/home')} >
+            Home
+          </Button>
 
       </footer>
     </div>

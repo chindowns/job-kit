@@ -29,19 +29,19 @@ export default () => {
     }
     // If previous user is the current user, already logged in.
     // Need to add the logic
-    if (email === window.sessionStorage.getItem('userEmail')) {
+    if (email === window.localStorage.getItem('userEmail')) {
       history.replace('/view');
-     }
+    } else {
 
-    // SEND email for authentication
-    firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
-      .then(() => {
-        window.localStorage.setItem('emailForSignIn', email);
-        // make a message notifying user to check their email
-        console.log(`Sending signin link to ${email}`)
-      })
-      .catch(err => console.log(err));
-
+      // SEND email for authentication
+      firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+        .then(() => {
+          window.localStorage.setItem('emailForSignIn', email);
+          // make a message notifying user to check their email
+          console.log(`Sending signin link to ${email}`)
+        })
+        .catch(err => console.log(err));
+    }
   }
 
 
@@ -79,8 +79,8 @@ export default () => {
               history.replace('/add');
             })
             .catch(error => console.log(error));
-          
-        } else if (result.user.email === email) { 
+
+        } else if (result.user.email === email) {
 
           // Existing User
           console.log(`Get user ${result.user.email}`)
