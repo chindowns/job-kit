@@ -8,6 +8,7 @@ export default () => {
   const [email, setEmail] = useState();
 
   const history = useHistory();
+  let currentUser = window.localStorage.getItem('userEmail');
   let emailForSignIn;
 
   useEffect(() => {
@@ -17,19 +18,25 @@ export default () => {
     console.log(email);
   }, [emailForSignIn, email])
 
+  console.log(window.location.href)
+
   const handleSubmit = event => {
     event.preventDefault();
     console.log(email);
     // FIREBASE SignIn by Email Link Settings
+
+    const url = window.location.href+'user';
+
     const actionCodeSettings = {
-      url: 'https://jam.chindowns.app/user',
+      url: url,
       handleCodeInApp: true,
       iOS: {},
       android: {}
     }
     // If previous user is the current user, already logged in.
     // Need to add the logic
-    if (email === window.localStorage.getItem('userEmail')) {
+    if (email === currentUser) {
+      console.log('Current User is Signed In')
       history.replace('/view');
     } else {
 
