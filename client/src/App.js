@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Nav, Form, FormControl, Button} from 'react-bootstrap';
 
 import logo from './logo-white.png';
@@ -17,9 +17,14 @@ function App() {
 
   const currentYear = new Date().getFullYear();
 
-  const history = useHistory();
-
   console.log(showModal)
+
+  function signout() {
+    console.log("Signing Out")
+    window.localStorage.removeItem('userEmail');
+    window.localStorage.removeItem('userId');
+    window.localStorage.removeItem('emailForSignin');
+  }
 
   return (
     <div className="App">
@@ -31,7 +36,7 @@ function App() {
         </p>
         </div>
 
-        <Nav variant="" className="navGroup">
+        <Nav id="nav" variant="" className="navGroup">
           <Nav.Link id="view" className="nav" href="/view">View App</Nav.Link>
           <Nav.Link className="nav" href="/add">Add App</Nav.Link>
         </Nav>
@@ -55,11 +60,7 @@ function App() {
       
       <Modal showModal = {showModal} ></Modal>
 
-      
-      
       <footer className="footer">
-        &copy; Copyright { currentYear }, All Rights Reserved
-
         <Button 
           variant="white" 
           id="feedback"
@@ -67,11 +68,18 @@ function App() {
             Leave Comment
           </Button>
 
-        <Button
+          &copy; Copyright { currentYear }, All Rights Reserved
+
+          <Nav.Link
           variant="white"
           id="login"
-          onClick={() => history.replace('/home')} >
-            Home
+          href="/home" >
+            Login
+          </Nav.Link>
+          <Button
+            id="signout"
+            onClick = {() => signout()}
+            > Sign Out
           </Button>
 
       </footer>
