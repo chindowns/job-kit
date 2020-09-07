@@ -1,6 +1,4 @@
-
 .note-head {
-    
     background-color: whitesmoke;
     font-weight: 600;
     margin:0px ;
@@ -18,4 +16,8 @@
 #trashicon {
     margin: 3px;
     text-align: right;
+}
+
+.hide {
+    display: none;
 }
