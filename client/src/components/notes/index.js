@@ -1,7 +1,8 @@
 //NOTES INDEX.JS
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
-import './notes.css'
+import axios from 'axios';
+import './notes.css';
 
 export default (props) => {
 
@@ -9,11 +10,26 @@ export default (props) => {
 
     console.log(props);
 
+    function deleteNote() {
+        console.log(`Delete ${note.id}`)
+
+        axios.delete(`/api/notes/${note.id}`)
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => console.log(err));
+    }
+
     return (
         <div>
-            <Row className="note-head d-flex justify-content-between align-center">
+            <Row className="note-head">
                 <Col className="text-left">{note.contact}</Col>
-                <Col className="text-right">{note.date}</Col>
+                <Col 
+                    id="trashicon" 
+                    className="fa fa-trash"
+                    // className="fa fa-pencil-square-o"
+                    onClick={e => deleteNote(note)}>
+                </Col>
             </Row>
             <Row className="note-text">
                 {note.note}

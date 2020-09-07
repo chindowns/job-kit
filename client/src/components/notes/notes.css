@@ -1,11 +1,10 @@
 
 .note-head {
-    display: flex;
-    flex-wrap: justify-content-between;
+    
     background-color: whitesmoke;
     font-weight: 600;
     margin:0px ;
-    padding: 0px auto;
+    padding: auto;
     /* border-bottom: 1px solid #5D5C61; */
     text-shadow: none;
 }
@@ -14,4 +13,9 @@
     padding: auto 15px;
     margin: auto 15px;
     text-shadow: none;
+}
+
+#trashicon {
+    margin: 3px;
+    text-align: right;
 }

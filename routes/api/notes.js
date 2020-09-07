@@ -6,12 +6,12 @@ router
     .route("/")
     .post(controller.create)
     .get(controller.findAll)
-    .put(controller.update)
-    .delete(controller.destroy);
+    .put(controller.update);
 
 // Matches with /api/notes/:id
 router
     .route("/:id")
     .get(controller.findOne)
+    .delete(controller.destroy);
 
 module.exports = router;

@@ -35,7 +35,7 @@ module.exports = {
 
     destroy: (req, res) => {
         db.Note.destroy({
-            where: req.body
+            where: {id: req.params.id}
         })
         .then(dbResults => res.json(dbResults))
         .catch(err => res.status(422).json(err));
