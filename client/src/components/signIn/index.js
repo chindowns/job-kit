@@ -9,13 +9,13 @@ export default () => {
 
   const history = useHistory();
   let currentUser = window.localStorage.getItem('userEmail');
-  let emailForSignIn;
+  let emailForSignIn = window.localStorage.getItem('emailForSignIn');
 
   useEffect(() => {
     if (!email && emailForSignIn) {
       setEmail(emailForSignIn);
     }
-    console.log(email);
+    // console.log(email);
   }, [emailForSignIn, email])
 
   console.log(window.location.href)
@@ -55,7 +55,6 @@ export default () => {
   // Confirm the link is a sign-in with email link.
   if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
     console.log("Signing in FROM email link...\nGetting emailForSignIn")
-    emailForSignIn = window.localStorage.getItem('emailForSignIn')
 
     // if (!emailForSignIn) {
     //   email = window.prompt('Please provide your email for confirmation');
@@ -66,7 +65,7 @@ export default () => {
       .then(result => {
         console.log("=== Firebase Returned Result ===")
         console.log(result)
-        // if (result.user.email === email)
+        console.log(email)
 
         // Get / Create USER
         if (result.additionalUserInfo.isNewUser && result.user.email === email) {
