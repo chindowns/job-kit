@@ -12,11 +12,11 @@ export default (props) => {
     console.log(props);
 
     function deleteNote() {
-        console.log(`Delete ${note.id}`)
+        // console.log(`Delete ${note.id}`)
 
         axios.delete(`/api/notes/${note.id}`)
         .then(res => {
-            console.log(res.status);
+            // console.log(res.status);
             setHide(true);
         })
         .catch(err => console.log(err));

@@ -15,8 +15,8 @@ export default () => {
 
   currentUser = localStorage.getItem('userEmail');
   emailForSignIn = localStorage.getItem('emailForSignIn');
-  console.log(emailForSignIn)
-  console.log(email)
+  // console.log(emailForSignIn)
+  // console.log(email)
 }
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export default () => {
     // If previous user is the current user, already logged in.
     // Need to add the logic
     if (email === currentUser) {
-      console.log('Current User is Signed In')
+      // console.log('Current User is Signed In')
       history.replace('/view');
     } else {
 
@@ -59,7 +59,7 @@ export default () => {
         .then(() => {
           window.localStorage.setItem('emailForSignIn', email);
           // make a message notifying user to check their email
-          console.log(`Sending signin link to ${email}`)
+          // console.log(`Sending signin link to ${email}`)
         })
         .catch(err => console.log(err));
     }
@@ -68,7 +68,7 @@ export default () => {
 
   // Confirm the link is a sign-in with email link.
   if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
-    console.log("Signing in FROM email link...\nGetting emailForSignIn")
+    // console.log("Signing in FROM email link...\nGetting emailForSignIn")
 
     // if (!emailForSignIn) {
     //   email = window.prompt('Please provide your email for confirmation');
@@ -77,19 +77,20 @@ export default () => {
     // The client SDK parses the code from the link.
     firebase.auth().signInWithEmailLink(emailForSignIn, window.location.href)
       .then(result => {
-        console.log("=== Firebase Returned Result ===")
-        console.log(result)
-        console.log(email)
+        // console.log("=== Firebase Returned Result ===")
+        // console.log(result)
+        // console.log(email)
 
         // Get / Create USER
-        if (result.additionalUserInfo.isNewUser && result.user.email === email) {
+        // if (result.additionalUserInfo.isNewUser && result.user.email === email) {
+        if (result.additionalUserInfo.isNewUser) {
           // New User
-          console.log(`Set new user ${result.user.email}`)
+          // console.log(`Set new user ${result.user.email}`)
           axios.post('/api/user/', {
             email: result.user.email
           })
             .then(res => {
-              console.log(`Signed In New User: ${res.data.id} ${res.data.email}`)
+              // console.log(`Signed In New User: ${res.data.id} ${res.data.email}`)
               // setUser(res.data);
               window.localStorage.setItem('userID', res.data.id);
               window.localStorage.setItem('userEmail', res.data.email);
@@ -100,14 +101,14 @@ export default () => {
             })
             .catch(error => console.log(error));
 
-        } else if (result.user.email === email) {
-
+        // } else if (result.user.email === email) {
+          } else {
           // Existing User
           console.log(`Get user ${result.user.email}`)
           axios(`/api/user/${result.user.email}`)
             .then(res => {
-              console.log(res.data);
-              console.log(`Signed In User: ${res.data.id} ${res.data.email}`);
+              // console.log(res.data);
+              // console.log(`Signed In User: ${res.data.id} ${res.data.email}`);
               // setUser(res.data);
               window.localStorage.setItem('userID', res.data.id);
               window.localStorage.setItem('userEmail', res.data.email);

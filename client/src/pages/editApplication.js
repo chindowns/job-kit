@@ -53,11 +53,11 @@ export default (props) => {
             "Notes": tempNotes
         }
 
-        console.log(updateApplication)
+        // console.log(updateApplication)
 
         axios.put(`/api/application/${application.userId}-${application.id}`, updateApplication)
         .then(res => {
-            console.log(res.status);
+            // console.log(res.status);
             history.replace('/view')
         })
         .catch((err) => console.log('Failed to update', err));
