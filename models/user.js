@@ -12,7 +12,7 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
         
-    });
+    }, { timestamps: false });
 
     User.associate = models => {
         models.User.hasMany(models.Application, {

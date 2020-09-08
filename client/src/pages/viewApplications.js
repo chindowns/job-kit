@@ -14,7 +14,14 @@ export default () => {
     useEffect(() => {
       if(applications.length === 0){
         axios.get(`/api/application/${userId}`)
-          .then(res => setApplications(res.data))
+          .then(res => {
+            if(res.data.length > 0){
+            setApplications(res.data)}
+            else {
+            window.location('/add');
+            }
+          })
+          .catch(err => console.log('err'));
       }
     },[applications, userId])
 

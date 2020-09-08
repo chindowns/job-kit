@@ -5,18 +5,26 @@ import axios from 'axios';
 
 export default () => {
   // const [user, setUser] = useState({});
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState(null);
 
-  const history = useHistory();
-  let currentUser = window.localStorage.getItem('userEmail');
-  let emailForSignIn = window.localStorage.getItem('emailForSignIn');
+  let history = useHistory();
+  let currentUser;
+  let emailForSignIn;
+
+  if ("localStorage" in window){
+
+  currentUser = localStorage.getItem('userEmail');
+  emailForSignIn = localStorage.getItem('emailForSignIn');
+  console.log(emailForSignIn)
+  console.log(email)
+}
 
   useEffect(() => {
     if (!email && emailForSignIn) {
       setEmail(emailForSignIn);
+      console.log(email);
     }
-    // console.log(email);
-  }, [emailForSignIn, email])
+  }, [email, emailForSignIn])
 
   console.log(window.location.href)
 
@@ -25,7 +33,13 @@ export default () => {
     console.log(email);
     // FIREBASE SignIn by Email Link Settings
 
-    const url = window.location.href+'user';
+    let url = null;
+
+    if (process.env.NODE_ENV === "production") {
+      url = 'https://jam.chindowns.app/user';
+    } else {
+      url = 'http://localhost:3000/user';
+    }
 
     const actionCodeSettings = {
       url: url,
@@ -72,7 +86,7 @@ export default () => {
           // New User
           console.log(`Set new user ${result.user.email}`)
           axios.post('/api/user/', {
-            email: email
+            email: result.user.email
           })
             .then(res => {
               console.log(`Signed In New User: ${res.data.id} ${res.data.email}`)
@@ -90,7 +104,7 @@ export default () => {
 
           // Existing User
           console.log(`Get user ${result.user.email}`)
-          axios(`/api/user/${email}`)
+          axios(`/api/user/${result.user.email}`)
             .then(res => {
               console.log(res.data);
               console.log(`Signed In User: ${res.data.id} ${res.data.email}`);
