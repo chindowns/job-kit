@@ -22,9 +22,15 @@ function App() {
 
   function signout() {
     // console.log("Signing Out")
-    window.localStorage.removeItem('userEmail');
-    window.localStorage.removeItem('userId');
+    
     window.localStorage.removeItem('emailForSignin');
+    while(window.localStorage.getItem('userEmail') || window.localStorage.getItem('userId')){
+      setTimeout(()=>{
+        window.localStorage.removeItem('userEmail');
+        window.localStorage.removeItem('userId');
+      }, 100)
+      
+    }
     history.replace('/home');
   }
 
