@@ -8,10 +8,12 @@ export default () => {
   // const [user, setUser] = useState({});
   const [email, setEmail] = useState(null);
   const [checkEmail, setCheckEmail] = useState(false)
+  // const [signingIn, setSigningIn] = useState(false);
 
   let history = useHistory();
   let currentUser;
   let emailForSignIn;
+  let signingIn = false;
 
   if ("localStorage" in window) {
 
@@ -72,6 +74,8 @@ export default () => {
   // Confirm the link is a sign-in with email link.
   if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
     // console.log("Signing in FROM email link...\nGetting emailForSignIn")
+    // setSigningIn(true);
+    signingIn = true;
 
     // The client SDK parses the code from the link.
     firebase.auth().signInWithEmailLink(emailForSignIn, window.location.href)
@@ -129,23 +133,32 @@ export default () => {
       });
   }
 
+  const MessageBox = <div id="messageBox" className="radius background-dar-grey text-shadow white large" ></div>;
+
   return (
     !checkEmail ?
-      (<div className='form'>
-        <form className="form-group form-add" onSubmit={handleSubmit}>
-          <label className="form-label">Enter Email<br />
-            <input id="emailLink"
-              type="text"
-              name="emailLink"
-              onChange={e => setEmail(e.target.value)}
-              placeholder="Enter email" />
-          </label>
-          <br />
-          <button className='btn-small' type='submit'>Send Link</button>
-        </form>
-      </div>)
+      signingIn ?
+        (<div id="messageBox" className="radius ">
+          <div className="text-shadow white large">
+            Signing you in now...
+          </div>
+        </div>)        
+        :
+        (<div className='form'>
+          <form className="form-group form-add" onSubmit={handleSubmit}>
+            <label className="form-label">Enter Email<br />
+              <input id="emailLink"
+                type="text"
+                name="emailLink"
+                onChange={e => setEmail(e.target.value)}
+                placeholder="Enter email" />
+            </label>
+            <br />
+            <button className='btn-small' type='submit'>Send Link</button>
+          </form>
+        </div>)
       :
-      (<div id="checkEmailMessage" className="radius background-dark-grey">
+      (<div id="messageBox" className="radius ">
         <div className="text-shadow white large">
           Check Your Email.  The sign-in link will open a new window.
         </div>

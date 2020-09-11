@@ -5,6 +5,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0px 15px;
+    margin-bottom: 50px;
   }
   
   .App-header {

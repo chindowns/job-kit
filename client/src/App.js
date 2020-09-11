@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
 import { Nav, Form, FormControl, Button} from 'react-bootstrap';
 
 import logo from './logo-white.png';
@@ -17,6 +17,7 @@ function App() {
 
   const currentYear = new Date().getFullYear();
 
+  const history = useHistory();
   // console.log(showModal)
 
   function signout() {
@@ -24,8 +25,8 @@ function App() {
     window.localStorage.removeItem('emailForSignin');
     window.localStorage.removeItem('userEmail');
     window.localStorage.removeItem('userID');
-    
     window.location.reload();
+    
   }
 
   return (
