@@ -2,22 +2,24 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 import firebase from '../../utils/firebase';
 import axios from 'axios';
+import './index.css';
 
 export default () => {
   // const [user, setUser] = useState({});
   const [email, setEmail] = useState(null);
+  const [checkEmail, setCheckEmail] = useState(false)
 
   let history = useHistory();
   let currentUser;
   let emailForSignIn;
 
-  if ("localStorage" in window){
+  if ("localStorage" in window) {
 
-  currentUser = localStorage.getItem('userEmail');
-  emailForSignIn = localStorage.getItem('emailForSignIn');
-  // console.log(emailForSignIn)
-  // console.log(email)
-}
+    currentUser = localStorage.getItem('userEmail');
+    emailForSignIn = localStorage.getItem('emailForSignIn');
+    // console.log(emailForSignIn)
+    // console.log(email)
+  }
 
   useEffect(() => {
     if (!email && emailForSignIn) {
@@ -58,6 +60,7 @@ export default () => {
       firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
         .then(() => {
           window.localStorage.setItem('emailForSignIn', email);
+          setCheckEmail(true);
           // make a message notifying user to check their email
           // console.log(`Sending signin link to ${email}`)
         })
@@ -69,10 +72,6 @@ export default () => {
   // Confirm the link is a sign-in with email link.
   if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
     // console.log("Signing in FROM email link...\nGetting emailForSignIn")
-
-    // if (!emailForSignIn) {
-    //   email = window.prompt('Please provide your email for confirmation');
-    // }
 
     // The client SDK parses the code from the link.
     firebase.auth().signInWithEmailLink(emailForSignIn, window.location.href)
@@ -101,8 +100,8 @@ export default () => {
             })
             .catch(error => console.log(error));
 
-        // } else if (result.user.email === email) {
-          } else {
+          // } else if (result.user.email === email) {
+        } else {
           // Existing User
           console.log(`Get user ${result.user.email}`)
           axios(`/api/user/${result.user.email}`)
@@ -131,19 +130,27 @@ export default () => {
   }
 
   return (
-    <div className='form'>
-      <form className="form-group form-add" onSubmit={handleSubmit}>
-        <label className="form-label">Enter Email<br />
-          <input id="emailLink"
-            type="text"
-            name="emailLink"
-            onChange={e => setEmail(e.target.value)}
-            placeholder="Enter email" />
-        </label>
-        <br />
-        <button className='btn-small' type='submit'>Send Link</button>
-      </form>
-    </div>
+    !checkEmail ?
+      (<div className='form'>
+        <form className="form-group form-add" onSubmit={handleSubmit}>
+          <label className="form-label">Enter Email<br />
+            <input id="emailLink"
+              type="text"
+              name="emailLink"
+              onChange={e => setEmail(e.target.value)}
+              placeholder="Enter email" />
+          </label>
+          <br />
+          <button className='btn-small' type='submit'>Send Link</button>
+        </form>
+      </div>)
+      :
+      (<div id="checkEmailMessage" className="radius background-dark-grey">
+        <div className="text-shadow white large">
+          Check Your Email.  The sign-in link will open a new window.
+        </div>
+      </div>)
+
   )
 
-};
+}

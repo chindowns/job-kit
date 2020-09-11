@@ -14,7 +14,7 @@ export default () => {
                 I welcome comments and feedback.  Click the link in the footer to leave a comment.
             </p>
             <p>
-                Enter your email below to sign in.  If you it is your first time, you will receive an email with your sign in link.
+                Enter your email below to sign in.  If it is your first time logging in, you will receive an email with your sign in link.
             </p>
         </div>
         <SignIn />
