@@ -73,12 +73,6 @@ function App() {
 
           &copy; Copyright { currentYear }, All Rights Reserved
 
-          <Nav.Link
-          variant="white"
-          id="login"
-          href="/home" >
-            Login
-          </Nav.Link>
           <Button
             id="signout"
             onClick = {() => signout()}

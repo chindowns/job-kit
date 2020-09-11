@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Row from 'react-bootstrap/Row' ;
 import Card from '../components/cards';
 import axios from 'axios';
 // import { Store, get, keys } from 'idb-keyval';
 
 export default () => {
-  // const applicationStore = new Store('job-manager', 'applications');
   const [applications, setApplications] = useState([])
 
   // set the user
@@ -21,11 +21,11 @@ export default () => {
             window.location('/add');
             }
           })
-          .catch(err => console.log('err'));
+          .catch(err => {window.location.replace('/')});
       }
     },[applications, userId])
 
-    console.log(applications);
+    // console.log(applications);
     // Campares the property value of Stage for each application
     function compareValues(stage, order = 'desc') {
         // Sorts the application by 'stage' in descending order so '0-declined' goes to the end of the list
